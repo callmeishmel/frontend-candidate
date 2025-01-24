@@ -1,6 +1,18 @@
-<p>
-    Implement search in this component
-</p>
-<p>
-    Implement details in the <a [routerLink]="['/details/123']">details component</a>
-</p>
+<div>
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+        <label for="name">
+            Name:
+            <input type="text" id="name" name="name" formControlName="name">
+        </label>
+        <label for="color">
+            Color:
+            <select name="color" id="color" formControlName="color">
+                <option value="">Any color</option>
+                <option value="blue">Blue</option>
+                <option value="red">Red</option>
+                <option value="green">Green</option>
+            </select>
+        </label>
+        <button type="submit">Search</button>
+    </form>
+</div>
