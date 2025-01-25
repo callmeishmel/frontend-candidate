@@ -11,6 +11,9 @@ export class CardComponent implements OnInit {
 
     constructor(private router: Router) {}
 
+    /**
+     * Navigate to the details page for the given person.
+     */
     navigateToDetails(): void {
         this.router.navigate(['/details', this.person.id]);
     }

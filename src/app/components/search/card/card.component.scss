@@ -1,0 +1,24 @@
+.person-card {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: white;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.151);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+.person-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.414);
+    transform: translateY(-3px);
+}
+
+.person-card p {
+    font-size: 1.4em;
+}

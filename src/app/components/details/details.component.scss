@@ -1,0 +1,109 @@
+a.back-link {
+    display: inline-block;
+    padding: 6px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    background-color: #06495e;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+a.back-link:hover {
+    background-color: #052e3b;
+}
+
+.bk-icon {
+    position: relative;
+    top: -2px;
+    left: -5px;
+}
+
+.person-details-error {
+    color: red;
+    background-color: #ffe6e6;
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.person-details {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.person-details h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.person-favorite-color p {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #555;
+}
+
+.person-quotes {
+    margin-top: 20px;
+}
+
+.quote-group {
+    border: 1px solid #d3d3d3;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+.quote-excerpt {
+    padding: 10px;
+    background-color: #dfdfdf9e;
+    border-left: 4px solid #06495e;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.quote-excerpt:hover {
+    background-color: #f1f1f1;
+}
+
+.quote-excerpt p {
+    margin: 0;
+    font-size: 14px;
+    font-style: italic;
+    color: #333;
+}
+
+.quote-likes {
+    font-size: 14px;
+    color: #ffffff;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    background-color: #06495e;
+    border-radius: 3px;
+    width: fit-content;
+}
+
+.person-details-message {
+    text-align: center;
+    color: #555;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.error-message {
+    height: 20px;
+    font-weight: bold;
+    font-size: 16px;
+}

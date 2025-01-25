@@ -1,23 +1,32 @@
 <div>
     <p>
-        <a [routerLink]="['/']">Back to search results</a>
+        <a class="back-link" [routerLink]="['/']"><span class="bk-icon">&#x25c0;</span> Back to search results</a>
     </p>
-
-    <div *ngIf="isLoading">Loading...</div>
-    <div *ngIf="!isLoading && personDetails">
-    <h1>{{ personDetails.name }}</h1>
-    <p>Favorite Color: {{ personDetails.favorite_color | titlecase }}</p>
-    <div *ngFor="let quoteGroup of personDetails.quotes | keyvalue">
-        <span>Likes: {{ quoteGroup.key }}</span>
-        <div *ngFor="let excerpt of quoteGroup.value">
-            <p>{{ excerpt }}</p>
-        </div>
-    </div>
-    </div>
-    <div *ngIf="!isLoading && !personDetails">
-    <p>Person details not found.</p>
-    </div>
 </div>
 
+<div class="person-details-error" *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
 
+<div class="person-details" *ngIf="!errorMessage">
+  <h1>{{ personDetails?.name }}</h1>
 
+  <div class="person-favorite-color">
+      <p>Favorite Color: {{ personDetails?.favorite_color | titlecase}}</p>
+  </div>
+
+  <div class="person-quotes" *ngIf="quotes.length > 0">
+    <div *ngFor="let quoteGroup of quotes">
+        <div class="quote-group">
+            <div class="quote-excerpt" *ngFor="let quote of quoteGroup.quotes">
+                <p>{{ quote }}</p>
+            </div>
+            <div class="quote-likes">Likes: {{ quoteGroup.likes }}</div>
+        </div>
+    </div>
+  </div>
+
+  <div class="person-details-message" *ngIf="quotes.length === 0">
+    <p>No quotes available.</p>
+  </div>
+</div>
