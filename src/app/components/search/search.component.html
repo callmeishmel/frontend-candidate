@@ -1,13 +1,13 @@
 <div>
     <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-        <label for="name">
+        <label for="term">
             Name:
-            <input type="text" id="name" name="name" formControlName="name">
+            <input type="text" id="term" name="term" formControlName="term">
         </label>
         <label for="color">
             Color:
             <select name="color" id="color" formControlName="color">
-                <option value="">Any color</option>
+                <option value="">Select a color</option>
                 <option value="blue">Blue</option>
                 <option value="red">Red</option>
                 <option value="green">Green</option>
@@ -15,4 +15,21 @@
         </label>
         <button type="submit">Search</button>
     </form>
+
+    <!-- Search results -->
+    <div *ngIf="people.length > 0">
+        <div *ngFor="let person of people">
+        {{ person.id }}: {{ person.name }}
+        </div>
+    </div>
+
+    <!-- Validation error -->
+    <div *ngIf="submitted && searchForm.hasError('termOrColorRequired')">
+        A Name or a Color is required.
+    </div>
+
+    <!-- No results message -->
+    <div *ngIf="submitted && people.length === 0 && !searchForm.hasError('termOrColorRequired')">
+        No results found.
+    </div>
 </div>

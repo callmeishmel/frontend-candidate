@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { PersonApiService } from 'src/app/services/PersonApiService';
+import { termOrColorValidator } from 'src/app/validators/term-color.validator';
 
 @Component({
   selector: 'app-search',
@@ -8,15 +10,35 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class SearchComponent implements OnInit {
 
+  people: any[] = [];
+  submitted: boolean = false;
+
   searchForm = this.fb.group({
-    name: ['', Validators.required],
+    term: [''],
     color: ['']
-  });
+  }, { validators: termOrColorValidator() });
   
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private personApiService: PersonApiService,
+  ) {}
   
   onSubmit() {
-    console.log(this.searchForm.value);
+    this.submitted = true;
+    this.people = [];
+
+    if(this.searchForm.invalid) {
+      return;
+    }
+
+    const formData = this.searchForm.value;
+
+    this.personApiService.fetchAll({
+      term: formData.term,
+      color: formData.color
+    }).subscribe(response => {
+      this.people = response.matches || [];
+    });
   }
 
   ngOnInit(): void {
