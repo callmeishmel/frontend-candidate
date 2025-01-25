@@ -1,35 +1,27 @@
 <div>
-    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-        <label for="term">
-            Name:
-            <input type="text" id="term" name="term" formControlName="term">
-        </label>
-        <label for="color">
-            Color:
+    <div>
+        <form class="person-search-form" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+            <input placeholder="Person" type="text" id="term" name="term" autocomplete="off" formControlName="term">
             <select name="color" id="color" formControlName="color">
-                <option value="">Select</option>
+                <option value="">Select Color</option>
                 <option value="blue">Blue</option>
                 <option value="red">Red</option>
                 <option value="green">Green</option>
             </select>
-        </label>
-        <button type="submit">Search</button>
-    </form>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <h2 class="results-title">Search Results</h2>
+
+    <div class="feedback-message" aria-live="polite">
+        <span *ngIf="feedbackMessage" >{{ feedbackMessage }}</span>
+    </div>
 
     <!-- Search result cards -->
-    <div *ngIf="people.length > 0">
+    <div class="search-results" *ngIf="people.length > 0">
         <div *ngFor="let person of people">
             <app-result-card [person]="person"></app-result-card>
         </div>
-    </div>
-
-    <!-- Validation error -->
-    <div *ngIf="submitted && searchForm.hasError('termOrColorRequired')">
-        A Name or a Color is required.
-    </div>
-
-    <!-- No results message -->
-    <div *ngIf="submitted && people.length === 0 && !searchForm.hasError('termOrColorRequired')">
-        No results found.
     </div>
 </div>

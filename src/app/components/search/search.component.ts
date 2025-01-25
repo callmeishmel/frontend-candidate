@@ -11,8 +11,10 @@ import { SearchStateService } from 'src/app/services/search-state.service';
 })
 export class SearchComponent implements OnInit {
 
+  query: string = '';
   people: any[] = [];
   submitted: boolean = false;
+  feedbackMessage: string | null = null;
 
   searchForm = this.fb.group({
     term: [''],
@@ -24,12 +26,20 @@ export class SearchComponent implements OnInit {
     private personApiService: PersonApiService,
     private searchStateService: SearchStateService,
   ) {}
+
+  ngOnInit(): void {
+    this.people = this.searchStateService.searchResults;
+    this.searchForm.patchValue({
+      term: this.searchStateService.searchQuery || '',
+      color: this.searchStateService.searchColor || '',
+    });
+  }
   
   onSubmit() {
     this.submitted = true;
-    this.people = [];
 
     if(this.searchForm.invalid) {
+      this.feedbackMessage = 'Please provide a valid search term or select a color.';
       return;
     }
 
@@ -38,11 +48,20 @@ export class SearchComponent implements OnInit {
     this.personApiService.fetchAll({
       term: formData.term,
       color: formData.color
-    }).subscribe(response => {
-      this.people = response.matches || [];
+    }).subscribe({
+      next: (response) => {
+
+        this.people = response.matches || [];
+        this.searchStateService.searchResults = this.people;
+        this.searchStateService.searchQuery = formData.term || '';
+        this.searchStateService.searchColor = formData.color || '';
+
+        this.feedbackMessage = this.people.length === 0 ? 'No matches found.' : null;
+      },
+      error: (err) => {
+        console.error('Error fetching search results:', err);
+        this.feedbackMessage = 'Failed to fetch search results.';
+      }
     });
   }
-
-  ngOnInit(): void {}
-
 }
