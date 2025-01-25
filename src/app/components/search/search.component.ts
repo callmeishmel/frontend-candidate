@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { PersonApiService } from 'src/app/services/PersonApiService';
 import { termOrColorValidator } from 'src/app/validators/term-color.validator';
 
@@ -41,7 +41,6 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

@@ -5,7 +5,7 @@ import { Observable } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
 export class PersonApiService {
-    private apiUrl = environment.API_URL + '/search';
+    private apiUrl = environment.API_URL;
 
     constructor(private http: HttpClient) {}
 
@@ -22,6 +22,11 @@ export class PersonApiService {
             httpParams = httpParams.set('color', params.color.trim());
         }
 
-        return this.http.get(this.apiUrl, { params: httpParams });
+        return this.http.get(`${this.apiUrl}/search`, { params: httpParams });
+    }
+
+    getPersonDetails(id: string): Observable<any> {
+        const url = `${this.apiUrl}/details/${id}`;
+        return this.http.get<any>(url);
     }
 }
