@@ -7,7 +7,7 @@
         <label for="color">
             Color:
             <select name="color" id="color" formControlName="color">
-                <option value="">Select a color</option>
+                <option value="">Select</option>
                 <option value="blue">Blue</option>
                 <option value="red">Red</option>
                 <option value="green">Green</option>
@@ -16,10 +16,10 @@
         <button type="submit">Search</button>
     </form>
 
-    <!-- Search results -->
+    <!-- Search result cards -->
     <div *ngIf="people.length > 0">
         <div *ngFor="let person of people">
-        {{ person.id }}: {{ person.name }}
+            <app-result-card [person]="person"></app-result-card>
         </div>
     </div>
 

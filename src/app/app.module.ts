@@ -7,12 +7,14 @@ import { SearchComponent } from './components/search/search.component';
 import { DetailsComponent } from './components/details/details.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CardComponent } from './components/search/card/card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
-    DetailsComponent
+    DetailsComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
