@@ -19,5 +19,8 @@
 }
 
 .content {
-    margin: 25px 35px;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 20px;
+    min-height: calc(100vh - 110px);
 }
