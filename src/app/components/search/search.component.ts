@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { PersonApiService } from 'src/app/services/PersonApiService';
+import { PersonApiService } from 'src/app/services/person-api.service';
 import { termOrColorValidator } from 'src/app/validators/term-color.validator';
+import { SearchStateService } from 'src/app/services/search-state.service';
 
 @Component({
   selector: 'app-search',
@@ -21,6 +22,7 @@ export class SearchComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private personApiService: PersonApiService,
+    private searchStateService: SearchStateService,
   ) {}
   
   onSubmit() {
